@@ -15,7 +15,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'tompytools',
-        'datetime'
+        'datetime',
         'os', 'subprocess', 're', 'tempfile'
     ],
     zip_safe=False)
