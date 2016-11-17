@@ -14,8 +14,8 @@ setup(
     license='GPL-3',
     packages=find_packages(),
     install_requires=[
-        #'tompytools>=0.03',
-        'datetime>=4.1.1'
+        'tompytools',
+        'datetime'
         'os', 'subprocess', 're', 'tempfile'
     ],
     zip_safe=False)
