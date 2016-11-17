@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
+###########
+# DEPENDS #
+###########
+
 import os
 import subprocess
 import datetime
@@ -20,8 +25,10 @@ def io_file_to_bash_flag(file_name, file_type, debug=False):
     # -b: input_bam
     # -c: output_bam
     # -d: output_bai
-    # -e: jgi_logon
+    # -e: email
     # -f: input_fa
+    # --fq: input_fq
+    # --ofq: output_fq
     # -g: output_fa
     # -h: output_dict
     # -i: output_fai
@@ -29,7 +36,7 @@ def io_file_to_bash_flag(file_name, file_type, debug=False):
     # -k: output_gtf
     # -l: input_bed
     # -m: output_bed
-    # -p: jgi_password
+    # -p: password
     # -r: output_pdf
     # -t: input_table
     # -u: output_table
@@ -43,6 +50,8 @@ def io_file_to_bash_flag(file_name, file_type, debug=False):
         '.bam': 'b',
         '.fa': 'f',
         '.fasta': 'f',
+        '.fastq': '-fq',
+        '.fq': '-fq',
         '.gtf': 'j',
         '.bed': 'l',
         '.table': 't',
@@ -53,6 +62,8 @@ def io_file_to_bash_flag(file_name, file_type, debug=False):
         '.bai': 'd',
         '.fa': 'g',
         '.fasta': 'g',
+        '.fastq': '-ofq',
+        '.fq': '-ofq',
         '.dict': 'h',
         '.fai': 'i',
         '.gtf': 'k',
