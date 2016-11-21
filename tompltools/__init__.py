@@ -56,6 +56,7 @@ def io_file_to_bash_flag(file_name, file_type, debug=False):
         '.bed': 'l',
         '.table': 't',
         '.vcf': 'v',
+        '.html': 'y',
         '.Rds': 'y'}
     output_flags = {
         '.bam': 'c',
@@ -71,6 +72,7 @@ def io_file_to_bash_flag(file_name, file_type, debug=False):
         '.pdf': 'r',
         '.table': 'u',
         '.vcf': 'w',
+        '.html': 'z',
         '.Rds': 'z'}
 
     # get the first extension and deal with .gz files
