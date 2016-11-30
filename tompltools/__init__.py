@@ -109,7 +109,7 @@ def io_file_to_bash_flag(file_name, file_type, debug=False):
 ############################
 
 def submit_job(job_script, ntasks, cpus_per_task, mem_per_cpu, job_name,
-               extras=[]):
+               nice, extras=[]):
     # type: (str, str, str, str, str, list) -> str
     '''
     Submit the job using salloc hack. When complete return job id and write
@@ -119,7 +119,9 @@ def submit_job(job_script, ntasks, cpus_per_task, mem_per_cpu, job_name,
     proc = subprocess.Popen(['salloc', '--ntasks=' + ntasks,
                              '--cpus-per-task=' + cpus_per_task,
                              '--mem-per-cpu=' + mem_per_cpu,
-                             '--job-name=' + job_name, job_script] +
+                             '--job-name=' + job_name,
+                             '--nice=' + nice,
+                             job_script] +
                             list(extras),
                             stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE)
@@ -162,8 +164,8 @@ def print_job_submission(job_name, job_id):
 ######################
 
 def generate_job_function(
-        job_script, job_name, job_type='transform', ntasks=1,
-        cpus_per_task=1, mem_per_cpu=4000, extras=False, verbose=False):
+        job_script, job_name, job_type='transform', ntasks=1, cpus_per_task=1,
+        mem_per_cpu=4000, nice=0, extras=False, verbose=False):
 
     '''Generate a function for a pipeline job step'''
 
@@ -279,6 +281,7 @@ def generate_job_function(
             cpus_per_task=str(cpus_per_task),
             mem_per_cpu=str(mem_per_cpu),
             job_name=job_name,
+            nice=str(nice),
             extras=list(submit_args_flat))
         print_job_submission(job_name, job_id)
 
