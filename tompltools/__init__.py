@@ -195,6 +195,9 @@ def generate_job_function(
     if extras:
         function_args.append('extras')
 
+    if verbose:
+            print("\n*function_args: ", function_args)
+
     # define the function
     def job_function(*function_args):
 
