@@ -12,6 +12,7 @@ import datetime
 import tompytools
 import tempfile
 import re
+import warnings
 
 
 #####################
@@ -86,6 +87,15 @@ def io_file_to_bash_flag(file_name, file_type, debug=False):
         print('file_type: ', file_type)
         print('file_name: ', file_name)
         print(' file_ext: ', file_ext)
+
+    # deal with files with no extension
+    if file_ext == '':
+        warnings.warn(('{} file \'{}\' has no extension, returning other_{}'
+                       .format(file_type, file_name, file_type)))
+        if file_type == 'input':
+            return(['-y', file_name])
+        if file_type == 'output':
+            return(['-z', file_name])
 
     # find extension and switch in input or output files
     if file_type == 'input':
