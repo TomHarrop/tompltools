@@ -58,6 +58,7 @@ def io_file_to_bash_flag(file_name, file_type, debug=False):
         '.table': 't',
         '.vcf': 'v',
         '.html': 'y',
+        '.ovc': 'y',
         '.txt': 'y',
         '.quality': 'y',
         '.Rds': 'y'}
@@ -76,6 +77,7 @@ def io_file_to_bash_flag(file_name, file_type, debug=False):
         '.table': 'u',
         '.vcf': 'w',
         '.html': 'z',
+        '.ovc': 'z',
         '.txt': 'z',
         '.quality': 'z',
         '.Rds': 'z'}
