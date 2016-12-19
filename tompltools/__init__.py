@@ -58,6 +58,7 @@ def parse_cli_arguments():
             flag,
             help=cli_flags[flag],
             type=str,
+            action='append',
             dest=cli_flags[flag])
     return(parser.parse_args())
 
