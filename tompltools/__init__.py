@@ -13,38 +13,57 @@ import tompytools
 import tempfile
 import re
 import warnings
+import argparse
 
 
 #####################
 # UTILITY FUNCTIONS #
 #####################
 
-# convert input and output files to a bash-friendly string
-def io_file_to_bash_flag(file_name, file_type, debug=False):
+# parse arguments in python3 shebang scripts
+# cli_flags is the canonical definition of flags that should be accepted by
+# shebang scripts, including bash, python3 and R
+
+def parse_cli_arguments():
 
     # dictionary of bash flags:
-    # -b: input_bam
-    # -c: output_bam
-    # -d: output_bai
-    # -e: email
-    # -f: input_fa
-    # --fq: input_fq
-    # --ofq: output_fq
-    # -g: output_fa
-    # -h: output_dict
-    # -i: output_fai
-    # -j: input_gtf
-    # -k: output_gtf
-    # -l: input_bed
-    # -m: output_bed
-    # -p: password
-    # -r: output_pdf
-    # -t: input_table
-    # -u: output_table
-    # -v: input_vcf
-    # -w: output_vcf
-    # -y: other_input
-    # -z: other_output
+    cli_flags = {
+        '-b': 'input_bam',
+        '-c': 'output_bam',
+        '-d': 'output_bai',
+        '-e': 'email',
+        '-f': 'input_fa',
+        '--fq': 'input_fq',
+        '--ofq': 'output_fq',
+        '-g': 'output_fa',
+        '-n': 'output_dict',
+        '-i': 'output_fai',
+        '-j': 'input_gtf',
+        '-k': 'output_gtf',
+        '-l': 'input_bed',
+        '-m': 'output_bed',
+        '-p': 'password',
+        '-r': 'output_pdf',
+        '-t': 'input_table',
+        '-u': 'output_table',
+        '-v': 'input_vcf',
+        '-w': 'output_vcf',
+        '-y': 'other_input',
+        '-z': 'other_output'}
+
+    # add each argument from bash flags
+    parser = argparse.ArgumentParser()
+    for flag in cli_flags:
+        parser.add_argument(
+            flag,
+            help=cli_flags[flag],
+            type=str,
+            dest=cli_flags[flag])
+    return(parser.parse_args())
+
+
+# convert input and output files to a bash-friendly string
+def io_file_to_bash_flag(file_name, file_type, debug=False):
 
     # hard code input/output type
     input_flags = {
@@ -69,7 +88,7 @@ def io_file_to_bash_flag(file_name, file_type, debug=False):
         '.fasta': 'g',
         '.fastq': '-ofq',
         '.fq': '-ofq',
-        '.dict': 'h',
+        '.dict': 'n',
         '.fai': 'i',
         '.gtf': 'k',
         '.bed': 'm',
