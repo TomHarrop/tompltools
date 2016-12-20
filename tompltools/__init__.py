@@ -81,7 +81,8 @@ def io_file_to_bash_flag(file_name, file_type, debug=False):
         '.ovc': 'y',
         '.txt': 'y',
         '.quality': 'y',
-        '.Rds': 'y'}
+        '.Rds': 'y',
+        '.xml': 'y'}
     output_flags = {
         '.bam': 'c',
         '.bai': 'd',
@@ -100,7 +101,8 @@ def io_file_to_bash_flag(file_name, file_type, debug=False):
         '.ovc': 'z',
         '.txt': 'z',
         '.quality': 'z',
-        '.Rds': 'z'}
+        '.Rds': 'z',
+        '.xml': 'z'}
 
     # get the first extension and deal with .gz files
     file_ext = os.path.splitext(file_name)[1]
