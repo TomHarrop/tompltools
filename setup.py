@@ -6,7 +6,7 @@ from setuptools import find_packages
 
 setup(
     name='tompltools',
-    version='0.0.14',
+    version='0.0.15',
     description='Tom\'s python3 functions for ruffus pipelines',
     url='https://github.com/TomHarrop/tompltools',
     author='Tom Harrop',
